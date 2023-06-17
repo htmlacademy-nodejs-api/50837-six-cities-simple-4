@@ -1,15 +1,15 @@
 export type Host = {
-  avatarUrl: string
-  hostId: number
-  email: string
-  name: string
+  avatarUrl: string;
+  hostId: number;
+  email: string;
+  name: string;
 };
 
 export type City = {
-  latitude: number
-  longitude: number
-  cityName: string
-}
+  latitude: number;
+  longitude: number;
+  cityName: string;
+};
 
 export type OfferType = {
   bedrooms: number;
@@ -24,5 +24,5 @@ export type OfferType = {
   price: number;
   rating: number;
   type: string;
-  goods: string[]
+  goods: string[];
 };

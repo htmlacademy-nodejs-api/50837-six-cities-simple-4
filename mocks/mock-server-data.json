@@ -1,0 +1,137 @@
+{
+  "api": {
+    "titles": [
+      "Beautiful &amp; luxurious studio at great location",
+      "Wood and stone place",
+      "Canal View Prinsengracht",
+      "Nice, cozy, warm big bed apartment",
+      "Wood and stone place"
+    ],
+    "types": ["apartment", "house", "room", "hotel"],
+    "goods": [
+      "Breakfast",
+      "Air conditioning",
+      "Laptop friendly workspace",
+      "Baby seat",
+      "Washer",
+      "Towels",
+      "Fridge"
+    ],
+    "images": [
+      "markup/img/apartment-01.jpg",
+      "markup/img/apartment-02.jpg",
+      "markup/img/apartment-03.jpg",
+      "markup/img/room.jpg",
+      "markup/img/studio-01.jpg",
+      "markup/img/apartment-small-04.jpg"
+    ],
+    "descriptions": [
+      "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+      "An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful."
+    ],
+    "cities": [
+      {
+        "cityName": "Paris",
+        "latitude": [
+          "48.571839",
+          "48.959904",
+          "48.701748",
+          "48.722744",
+          "48.727733"
+        ],
+        "longitude": [
+          "2.220226",
+          "2.315973",
+          "2.236261",
+          "2.255223",
+          "2.328919"
+        ]
+      },
+      {
+        "cityName": "Cologne",
+        "latitude": [
+          "50.930975",
+          "50.738260",
+          "50.738601",
+          "50.708986",
+          "50.581486"
+        ],
+        "longitude": [
+          "6.796750",
+          "6.859771",
+          "6.758071",
+          "6.679511",
+          "6.681135"
+        ]
+      },
+      {
+        "cityName": "Brussels",
+        "latitude": [
+          "50.539240",
+          "50.747431",
+          "50.748863",
+          "50.766960",
+          "50.639257"
+        ],
+        "longitude": [
+          "4.315228",
+          "4.230974",
+          "4.249630",
+          "4.231154",
+          "4.295587"
+        ]
+      },
+      {
+        "cityName": "Amsterdam",
+        "latitude": [
+          "52.266779",
+          "52.337422",
+          "52.374754",
+          "52.256506",
+          "52.292793"
+        ],
+        "longitude": [
+          "4.573042",
+          "4.631823",
+          "4.700599",
+          "4.826891",
+          "4.562584"
+        ]
+      },
+      {
+        "cityName": "Hamburg",
+        "latitude": [
+          "53.404167",
+          "53.376627",
+          "53.466958",
+          "53.338697",
+          "53.466146"
+        ],
+        "longitude": [
+          "10.000717",
+          "10.005790",
+          "10.009718",
+          "10.003444",
+          "10.004167"
+        ]
+      },
+      {
+        "cityName": "Dusseldorf",
+        "latitude": [
+          "51.213243",
+          "51.191312",
+          "51.139393",
+          "51.218530",
+          "51.142191"
+        ],
+        "longitude": [
+          "6.586402",
+          "6.602311",
+          "6.696012",
+          "6.773395",
+          "6.468384"
+        ]
+      }
+    ]
+  }
+}
