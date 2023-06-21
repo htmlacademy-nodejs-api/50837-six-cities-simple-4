@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  db:
+    image: mongo:4.2
+    restart: always
+    container_name: buy-and-sell_mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: sergei
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./mongodb:/data/db
+
+  db_ui:
+    image: mongo-express:latest
+    restart: always
+    container_name: buy-and-sell_mongo_express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: sergei
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://sergei:example@db:27017/
+
+volumes:
+  buy-and-sell_data:
