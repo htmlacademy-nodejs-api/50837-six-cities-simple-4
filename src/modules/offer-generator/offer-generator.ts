@@ -31,9 +31,6 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const dateTime = dayjs()
       .subtract(generateRandomValue(FIRST_WEEK_DAY, LAST_WEEK_DAY), 'day')
       .toISOString();
-    const cityName: string = getRandomItem<CityType>(
-      this.mockData.cities
-    ).cityName;
     const previewImage = getRandomItem<string>(this.mockData.images);
     const images = getRandomItems<string>(this.mockData.images).join(';');
     const isPremium: boolean = Math.random() > 0.5;
@@ -43,12 +40,19 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const maxAdults = generateRandomValue(MIN_GUEST_COUNT, MAX_GUEST_COUNT);
     const price = generateRandomValue(MIN_RANDOM_PRICE, MAX_RANDOM_PRICE);
     const goods = getRandomItems<string>(this.mockData.goods).join(';');
-    const city: CityType | undefined = this.mockData.cities.find(
-      (c) => c.cityName === cityName
-    );
-    const coordinates = city
-      ? `${getRandomItem(city.latitude)};${getRandomItem(city.longitude)}`
-      : undefined;
+
+    const mockCity: CityType = getRandomItem(this.mockData.cities);
+
+    const cityName = mockCity?.cityName;
+    const latitude = getRandomItem(mockCity?.latitude);
+    const longitude = getRandomItem(mockCity?.longitude);
+
+    const coordinates = `${latitude}:${longitude}`;
+
+    const name = getRandomItem(this.mockData?.names);
+    const email = getRandomItem(this.mockData?.emails);
+    const avatarUrl = getRandomItem(this.mockData?.avatarList);
+    const userType = getRandomItem(this.mockData?.userTypes);
 
     return [
       title,
@@ -68,6 +72,10 @@ export default class OfferGenerator implements OfferGeneratorInterface {
       price,
       goods,
       coordinates,
+      name,
+      email,
+      avatarUrl,
+      userType
     ].join('\t');
   }
 }

@@ -16,8 +16,8 @@ export default class RestApplication {
 
   private async _initDb() {
     const mongoUri = getMongoURI(
-      this.config.get('DB_USER'),
-      this.config.get('DB_PASSWORD'),
+      // this.config.get('DB_USER'),
+      // this.config.get('DB_PASSWORD'),
       this.config.get('DB_HOST'),
       this.config.get('DB_PORT'),
       this.config.get('DB_NAME'),
