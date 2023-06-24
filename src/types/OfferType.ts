@@ -1,22 +1,24 @@
-export type Host = {
-  avatarUrl: string;
-  hostId: number;
-  email: string;
+export type User = {
   name: string;
-};
+  email: string;
+  avatarUrl: string;
+  userType: string;
+}
 
 export type City = {
-  latitude: number;
-  longitude: number;
+  latitude: (number | string)[];
+  longitude: (number | string)[];
   cityName: string;
 };
+
 
 export type OfferType = {
   bedrooms: number;
   city: City;
   title: string;
-  date: Date;
-  host: Host;
+  description: string;
+  user: User;
+  // userId: string;
   images: string[];
   isPremium: boolean;
   maxAdults: number;

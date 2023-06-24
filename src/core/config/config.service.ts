@@ -10,7 +10,6 @@ export default class ConfigService implements ConfigInterface<RestSchema> {
   private readonly config: RestSchema;
 
   constructor(
-    //private readonly logger: LoggerInterface,
     @inject(AppComponent.LoggerInterface) private readonly logger: LoggerInterface,
   ) {
     const parsedOutput = config();

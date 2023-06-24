@@ -132,6 +132,10 @@
           "6.468384"
         ]
       }
-    ]
+    ],
+    "names": ["John Smilga", "Colt Still", "Igor Antonov", "Gleb Kleckov","Mikhail Shvedov", "Arkadiy Paravozov"],
+    "emails": ["smilga@jmail.com", "still@jmail.com", "antonov@yandex.ru", "kleckov@mail.ru", "arkadiy-paravozov@pambler.ru", "mikhail@yandex.ru"],
+    "avatarList": ["markup/img/avatar-angelina.jpg", "markup/img/avatar-max.jpg"],
+    "userTypes": ["pro", "user"]
   }
 }
