@@ -6,10 +6,17 @@ export type User = {
 }
 
 export type City = {
-  latitude: (number | string)[];
-  longitude: (number | string)[];
+  latitude: string;
+  longitude: string;
   cityName: string;
 };
+
+export type Comment = {
+  text: string;
+  commentRating: number;
+  // userId: string;
+  // offerId: string;
+}
 
 
 export type OfferType = {
@@ -18,7 +25,6 @@ export type OfferType = {
   title: string;
   description: string;
   user: User;
-  // userId: string;
   images: string[];
   isPremium: boolean;
   maxAdults: number;
@@ -27,4 +33,7 @@ export type OfferType = {
   rating: number;
   type: string;
   goods: string[];
+  //commentCount: number;
+  // userId: string;
+  // cityId: string;
 };

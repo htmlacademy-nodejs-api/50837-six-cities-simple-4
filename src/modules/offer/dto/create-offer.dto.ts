@@ -1,9 +1,9 @@
-import { City, User } from '../../../types/OfferType.js';
+import { City} from '../../../types/OfferType.js';
 
 export default class CreateOfferDto {
   public bedrooms!: number;
-  public city!: City;
   public title!: string;
+  public city!: City;
   public description!: string;
   public images!: string[];
   public isPremium!: boolean;
@@ -14,5 +14,5 @@ export default class CreateOfferDto {
   public type!: string;
   public goods!: string[];
   public userId!: string;
-  public user!: User;
+  public cityId!: string;
 }

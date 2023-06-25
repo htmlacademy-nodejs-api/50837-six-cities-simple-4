@@ -1,5 +1,7 @@
 import { City, OfferType, User } from '../../types/OfferType.js';
-import typegoose, { defaultClasses, getModelForClass } from '@typegoose/typegoose';
+import typegoose, { defaultClasses, getModelForClass, Ref } from '@typegoose/typegoose';
+import { UserEntity } from '../user/user.entity.js';
+import { CityEntity } from '../city/city.entity.js';
 
 const { prop, modelOptions } = typegoose;
 
@@ -48,10 +50,25 @@ export class OfferEntity extends defaultClasses.TimeStamps implements OfferType 
   public goods: string[];
 
   @prop({ required: true })
-  public userId!: string;
-
-  @prop({ required: true })
   public user!: User;
+
+  @prop({
+    default: 0
+  })
+  public commentCount!: number;
+
+  @prop({
+    ref: CityEntity,
+    required: true,
+    default: {},
+  })
+  public cityId!: Ref<CityEntity>;
+
+  @prop({
+    ref: UserEntity,
+    required: true
+  })
+  public userId!: Ref<UserEntity>;
 
   constructor(offerData: OfferType) {
     super();
