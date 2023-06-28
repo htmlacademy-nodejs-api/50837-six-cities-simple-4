@@ -1,14 +1,16 @@
-import { inject, injectable } from 'inversify';
-import { Request, Response } from 'express';
-import { Controller } from '../../core/controller/controller.abstract.js';
-import { LoggerInterface } from '../../core/logger/logger.interface.js';
-import { AppComponent } from '../../types/app-component.enum.js';
-import { HttpMethod } from '../../types/http-method.enum.js';
-import { OfferServiceInterface } from './offer-service.interface.js';
-import { fillDTO } from '../../core/helpers/common.js';
-import OfferRdo from './response/offer.response.js';
-import CreateOfferDto from './dto/create-offer.dto';
-import { StatusCodes } from 'http-status-codes';
+
+import { inject, injectable } from "inversify";
+import { Request, Response } from "express";
+import { Controller } from "../../core/controller/controller.abstract.js";
+import { LoggerInterface } from "../../core/logger/logger.interface.js";
+import { AppComponent } from "../../types/app-component.enum.js";
+import { HttpMethod } from "../../types/http-method.enum.js";
+import { OfferServiceInterface } from "./offer-service.interface.js";
+import { fillDTO } from "../../core/helpers/common.js";
+import OfferRdo from "./response/offer.response.js";
+import CreateOfferDto from "./dto/create-offer.dto.js";
+import { StatusCodes } from "http-status-codes";
+
 
 @injectable()
 export default class OfferController extends Controller {
@@ -20,10 +22,10 @@ export default class OfferController extends Controller {
   ) {
     super(logger);
 
-    this.logger.info('Register routes for CategoryController…');
+    this.logger.info("Register routes for CategoryController…");
 
-    this.addRoute({ path: '/', method: HttpMethod.Get, handler: this.index });
-    this.addRoute({ path: '/', method: HttpMethod.Post, handler: this.create });
+    this.addRoute({ path: "/", method: HttpMethod.Get, handler: this.index });
+    this.addRoute({ path: "/", method: HttpMethod.Post, handler: this.create });
   }
 
   public async index(_req: Request, res: Response): Promise<void> {
@@ -43,9 +45,7 @@ export default class OfferController extends Controller {
     >,
     res: Response
   ): Promise<void> {
-    const existCategory = await this.offerService.findByTitle(
-      body.title
-    );
+    const existCategory = await this.offerService.findByTitle(body.title);
 
     if (existCategory) {
       const errorMessage = `Offer with name «${body.title}» exists.`;

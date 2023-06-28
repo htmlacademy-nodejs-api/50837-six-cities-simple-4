@@ -7,7 +7,9 @@ import { HttpMethod } from '../../types/http-method.enum.js';
 import { CityServiceInterface } from './city-service.interface.js';
 import { fillDTO } from '../../core/helpers/common.js';
 import CityResponse from './response/city.response.js';
-import CreateCityDto from './dto/create-city.dto';
+
+import CreateCityDto from './dto/create-city.dto.js';
+
 import { StatusCodes } from 'http-status-codes';
 import HttpError from '../../core/errors/http-error.js';
 import * as core from 'express-serve-static-core';

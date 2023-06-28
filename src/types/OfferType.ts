@@ -31,8 +31,10 @@ export type OfferType = {
   rating: number;
   type: string;
   goods: string[];
-  latitude: string;
-  longitude: string;
+
+  //latitude: string;
+  //longitude: string;
+
   //commentCount: number;
   // userId: string;
   // cityId: string;

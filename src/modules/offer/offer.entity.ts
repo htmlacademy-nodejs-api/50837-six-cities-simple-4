@@ -12,7 +12,11 @@ export interface OfferEntity extends defaultClasses.Base {}
     collection: 'offers'
   }
 })
+
+
+
 //export class OfferEntity extends defaultClasses.TimeStamps implements OfferType {
+
 export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({ required: true, min:1, max: 8 })
   public bedrooms: number;
@@ -47,11 +51,13 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({ required: true })
   public goods: string[];
 
-  @prop({ required: true })
-  public latitude: string;
 
-  @prop({ required: true })
-  public longitude: string;
+  // @prop({ required: true })
+  // public latitude: string;
+
+  // @prop({ required: true })
+  // public longitude: string;
+
 
   @prop({
     ref: CityEntity,
@@ -65,27 +71,25 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   })
   public userId!: Ref<UserEntity>;
 
-  // constructor(offerData: OfferType) {
-  //   super();
 
-  //   this.bedrooms = offerData.bedrooms;
-  //   // this.city = offerData.city;
-  //   this.title = offerData.title;
-  //   this.description = offerData.description;
-  //   this.images = offerData.images;
-  //   this.isPremium = offerData.isPremium;
-  //   this.maxAdults = offerData.maxAdults;
-  //   this.previewImage = offerData.previewImage;
-  //   this.price = offerData.price;
-  //   this.rating = offerData.rating;
-  //   this.type = offerData.type;
-  //   this.goods = offerData.goods;
-  //   this.latitude = offerData.latitude;
-  //   this.longitude = offerData.longitude;
-  // }
-  // user: User;
-  // latitude: string;
-  // longitude: string;
+  constructor(offerData: OfferType) {
+    super();
+
+    this.bedrooms = offerData.bedrooms;
+    this.title = offerData.title;
+    this.description = offerData.description;
+    this.images = offerData.images;
+    this.isPremium = offerData.isPremium;
+    this.maxAdults = offerData.maxAdults;
+    this.previewImage = offerData.previewImage;
+    this.price = offerData.price;
+    this.rating = offerData.rating;
+    this.type = offerData.type;
+    this.goods = offerData.goods;
+    //this.latitude = offerData.latitude;
+    //this.longitude = offerData.longitude;
+  }
+
 }
 
 export const OfferModel = getModelForClass(OfferEntity);
