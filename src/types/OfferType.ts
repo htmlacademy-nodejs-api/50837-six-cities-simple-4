@@ -6,8 +6,6 @@ export type User = {
 }
 
 export type City = {
-  latitude: string;
-  longitude: string;
   cityName: string;
 };
 
@@ -33,6 +31,8 @@ export type OfferType = {
   rating: number;
   type: string;
   goods: string[];
+  latitude: string;
+  longitude: string;
   //commentCount: number;
   // userId: string;
   // cityId: string;

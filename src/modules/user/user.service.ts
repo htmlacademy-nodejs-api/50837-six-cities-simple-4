@@ -42,20 +42,6 @@ export default class UserService implements UserServiceInterface {
     return this.userModel.find().exec();
   }
 
-  // public async deleteById(
-  //   userId: string
-  // ): Promise<DocumentType<UserEntity> | null> {
-  //   return this.userModel.findByIdAndDelete(userId).exec();
-  // }
-
-  // public async updateById(
-  //   userId: string,
-  //   dto: UpdateUserDto
-  // ): Promise<DocumentType<UserEntity> | null> {
-  //   return this.userModel
-  //     .findByIdAndUpdate(userId, dto, { new: true })
-  //     .exec();
-  // }
   public async updateById(userId: string, dto: UpdateUserDto): Promise<DocumentType<UserEntity> | null> {
     return this.userModel
       .findByIdAndUpdate(userId, dto, {new: true})

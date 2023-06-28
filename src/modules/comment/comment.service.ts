@@ -28,16 +28,6 @@ export default class CommentService implements CommentServiceInterface {
     return this.commentModel.find().exec();
   }
 
-  // public async findCommentText(
-  //   text: string
-  // ): Promise<DocumentType<CommentEntity> | null> {
-  //   return this.commentModel.findOne(text).exec();
-  // }
-
-  // findByCommentText(text: string): Promise<DocumentType<CommentEntity> | null> {
-  //   return this.commentModel.findOne(text).exec();
-  // }
-
   public async deleteByOfferId(offerId: string): Promise<number> {
     const result = await this.commentModel
       .deleteMany({offerId})

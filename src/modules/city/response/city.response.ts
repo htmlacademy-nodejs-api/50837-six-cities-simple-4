@@ -1,9 +1,9 @@
 import { Expose } from 'class-transformer';
 
-export default class CategoryRdo {
+export default class CityResponse {
   @Expose()
   public id!: string;
 
   @Expose()
-  public title!: string;
+  public cityName!: string ;
 }

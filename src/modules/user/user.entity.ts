@@ -1,5 +1,4 @@
 import { User } from '../../types/OfferType.js';
-// import typegoose, { getModelForClass } from '@typegoose/typegoose';
 import typegoose, { defaultClasses, getModelForClass } from '@typegoose/typegoose';
 import { createSHA256 } from '../../core/helpers/common.js';
 
@@ -7,7 +6,6 @@ const { prop, modelOptions } = typegoose;
 
 export interface UserEntity extends defaultClasses.Base {}
 
-//export class UserEntity implements User {
 @modelOptions({
   schemaOptions: {
     collection: 'users'

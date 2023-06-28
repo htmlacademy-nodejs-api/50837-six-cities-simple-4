@@ -1,19 +1,21 @@
+
 import convict from 'convict';
 import validator from 'convict-format-with-validator';
 
 convict.addFormats(validator);
 
-export type RestSchema = {
+export type ConfigSchema = {
   PORT: number;
   SALT: string;
   DB_HOST: string;
-  // DB_USER: string;
-  // DB_PASSWORD: string;
+  //DB_USER: string;
+  //DB_PASSWORD: string;
   DB_PORT: string;
   DB_NAME: string;
+  UPLOAD_DIRECTORY: string
 }
 
-export const configRestSchema = convict<RestSchema>({
+export const configSchema = convict<ConfigSchema>({
   PORT: {
     doc: 'Port for incoming connections',
     format: 'port',
@@ -33,13 +35,13 @@ export const configRestSchema = convict<RestSchema>({
     default: '127.0.0.1'
   },
   // DB_USER: {
-  //   doc: 'Username to connect to the database',
+  //   doc: 'Username to connect to the database (MongoDB)',
   //   format: String,
   //   env: 'DB_USER',
   //   default: null,
   // },
   // DB_PASSWORD: {
-  //   doc: 'Password to connect to the database',
+  //   doc: 'Database connection password (MongoDB)',
   //   format: String,
   //   env: 'DB_PASSWORD',
   //   default: null,
@@ -54,6 +56,12 @@ export const configRestSchema = convict<RestSchema>({
     doc: 'Database name (MongoDB)',
     format: String,
     env: 'DB_NAME',
-    default: 'buy-and-sell'
-  }
+    default: 'course-nodejs-restapi'
+  },
+  UPLOAD_DIRECTORY: {
+    doc: 'Directory for upload files',
+    format: String,
+    env: 'UPLOAD_DIRECTORY',
+    default: null
+  },
 });
