@@ -43,5 +43,4 @@ export default class CLIApplication {
       return acc;
     }, this.commands);
   }
-
 }

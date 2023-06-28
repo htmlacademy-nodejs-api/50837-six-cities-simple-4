@@ -1,4 +1,4 @@
-import { City, OfferType, User } from '../../types/OfferType.js';
+import { OfferType } from '../../types/OfferType.js';
 import typegoose, { defaultClasses, getModelForClass, Ref } from '@typegoose/typegoose';
 import { UserEntity } from '../user/user.entity.js';
 import { CityEntity } from '../city/city.entity.js';
@@ -12,12 +12,10 @@ export interface OfferEntity extends defaultClasses.Base {}
     collection: 'offers'
   }
 })
-export class OfferEntity extends defaultClasses.TimeStamps implements OfferType {
+
+export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({ required: true, min:1, max: 8 })
   public bedrooms: number;
-
-  @prop({ required: true})
-  public city: City;
 
   @prop({ unique: true, required: true, default: '', minlength: 10, maxlength: 100 })
   public title: string;
@@ -49,18 +47,15 @@ export class OfferEntity extends defaultClasses.TimeStamps implements OfferType 
   @prop({ required: true })
   public goods: string[];
 
-  @prop({ required: true })
-  public user!: User;
+  // @prop({ required: true })
+  // public latitude: string;
 
-  @prop({
-    default: 0
-  })
-  public commentCount!: number;
+  // @prop({ required: true })
+  // public longitude: string;
 
   @prop({
     ref: CityEntity,
     required: true,
-    default: {},
   })
   public cityId!: Ref<CityEntity>;
 
@@ -74,7 +69,6 @@ export class OfferEntity extends defaultClasses.TimeStamps implements OfferType 
     super();
 
     this.bedrooms = offerData.bedrooms;
-    this.city = offerData.city;
     this.title = offerData.title;
     this.description = offerData.description;
     this.images = offerData.images;
@@ -85,6 +79,8 @@ export class OfferEntity extends defaultClasses.TimeStamps implements OfferType 
     this.rating = offerData.rating;
     this.type = offerData.type;
     this.goods = offerData.goods;
+    //this.latitude = offerData.latitude;
+    //this.longitude = offerData.longitude;
   }
 }
 

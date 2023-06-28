@@ -4,12 +4,10 @@ import CreateCommentDto from './dto/create-comment.dto.js';
 import { CommentServiceInterface } from './comment-service.interface.js';
 import { inject, injectable } from 'inversify';
 import { AppComponent } from '../../types/app-component.enum.js';
-//import { LoggerInterface } from '../../core/logger/logger.interface.js';
 
 @injectable()
 export default class CommentService implements CommentServiceInterface {
   constructor(
-    //@inject(AppComponent.LoggerInterface) private readonly logger: LoggerInterface,
     @inject(AppComponent.CommentModel) private readonly commentModel: types.ModelType<CommentEntity>
   ) {}
 
@@ -27,16 +25,6 @@ export default class CommentService implements CommentServiceInterface {
   public async find(): Promise<DocumentType<CommentEntity>[]> {
     return this.commentModel.find().exec();
   }
-
-  // public async findCommentText(
-  //   text: string
-  // ): Promise<DocumentType<CommentEntity> | null> {
-  //   return this.commentModel.findOne(text).exec();
-  // }
-
-  // findByCommentText(text: string): Promise<DocumentType<CommentEntity> | null> {
-  //   return this.commentModel.findOne(text).exec();
-  // }
 
   public async deleteByOfferId(offerId: string): Promise<number> {
     const result = await this.commentModel

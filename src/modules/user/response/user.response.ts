@@ -1,9 +1,9 @@
 import { Expose } from 'class-transformer';
 
-export default class CategoryRdo {
+export default class UserResponse {
   @Expose()
   public id!: string;
 
   @Expose()
-  public text!: string;
+  public name!: string;
 }

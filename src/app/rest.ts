@@ -1,86 +1,76 @@
-import { LoggerInterface } from '../core/logger/logger.interface.js';
-import { ConfigInterface } from '../core/config/config.interface.js';
-import { RestSchema } from '../core/config/rest.schema.js';
-import { AppComponent } from '../types/app-component.enum.js';
-import { inject, injectable } from 'inversify';
-import { DatabaseClientInterface } from '../core/database-client/database-client.interface';
-import { getMongoURI } from '../core/helpers/db.js';
-import express, { Express } from 'express';
-import { ControllerInterface } from '../core/controller/controller.interface.js';
-import { ExceptionFilterInterface } from '../core/expception-filters/exception-filter.interface.js';
+import "reflect-metadata";
+import { LoggerInterface } from "../core/logger/logger.interface.js";
+import { ConfigInterface } from "../core/config/config.interface.js";
+import express, { Express } from "express";
+import { AppComponent } from "../types/app-component.enum.js";
+import { inject, injectable } from "inversify";
+import { DatabaseClientInterface } from "../core/database-client/database-client.interface.js";
+import { getMongoURI } from "../core/helpers/db.js";
+import { ControllerInterface } from "../core/controller/controller.interface.js";
+import { ExceptionFilterInterface } from "../core/expception-filters/exception-filter.interface.js";
 
 @injectable()
-export default class RestApplication {
-  private expressApplication: Express;
+export default class Application {
+  private expressApp: Express;
 
   constructor(
-    @inject(AppComponent.LoggerInterface) private readonly logger: LoggerInterface,
-    @inject(AppComponent.ConfigInterface) private readonly config: ConfigInterface<RestSchema>,
-    @inject(AppComponent.DatabaseClientInterface) private readonly databaseClient: DatabaseClientInterface,
-    @inject(AppComponent.CityController) private readonly cityController: ControllerInterface,
-    @inject(AppComponent.CommentController) private readonly commentController: ControllerInterface,
-    @inject(AppComponent.UserController) private readonly userController: ControllerInterface,
-    @inject(AppComponent.OfferController) private readonly offerController: ControllerInterface,
-    @inject(AppComponent.ExceptionFilterInterface) private readonly exceptionFilter: ExceptionFilterInterface,
+    @inject(AppComponent.LoggerInterface) private logger: LoggerInterface,
+    @inject(AppComponent.ConfigInterface) private config: ConfigInterface,
+    @inject(AppComponent.DatabaseClientInterface)
+    private databaseClient: DatabaseClientInterface,
+    @inject(AppComponent.CityController)
+    private cityController: ControllerInterface,
+    @inject(AppComponent.ExceptionFilterInterface)
+    private exceptionFilter: ExceptionFilterInterface,
+    @inject(AppComponent.UserController)
+    private userController: ControllerInterface,
+    @inject(AppComponent.OfferController)
+    private offerController: ControllerInterface,
+    @inject(AppComponent.CommentController)
+    private commentController: ControllerInterface
   ) {
-    this.expressApplication = express();
+    this.expressApp = express();
   }
 
-  private async _initDb() {
-    this.logger.info('Init database…');
+  public initRoutes() {
+    this.expressApp.use("/categories", this.cityController.router);
+    this.expressApp.use("/users", this.userController.router);
+    this.expressApp.use("/offers", this.offerController.router);
+    this.expressApp.use("/comments", this.commentController.router);
+  }
 
-    const mongoUri = getMongoURI(
-      // this.config.get('DB_USER'),
-      // this.config.get('DB_PASSWORD'),
-      this.config.get('DB_HOST'),
-      this.config.get('DB_PORT'),
-      this.config.get('DB_NAME'),
+  public initMiddleware() {
+    this.expressApp.use(express.json());
+    this.expressApp.use(
+      "/upload",
+      express.static(this.config.get("UPLOAD_DIRECTORY"))
     );
-
-    //return this.databaseClient.connect(mongoUri);
-    await this.databaseClient.connect(mongoUri);
-    this.logger.info('Init database completed');
   }
 
-  private async _initServer() {
-    this.logger.info('Try to init server…');
-
-    const port = this.config.get('PORT');
-    this.expressApplication.listen(port);
-
-    this.logger.info(`🚀Server started on http://localhost:${this.config.get('PORT')}`);
+  public initExceptionFilters() {
+    this.expressApp.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
   }
-
-  private async _initRoutes() {
-    this.logger.info('Controller initialization…');
-    this.expressApplication.use('/cities', this.cityController.router);
-    this.expressApplication.use('/comments', this.commentController.router);
-    this.expressApplication.use('/users', this.userController.router);
-    this.expressApplication.use('/offers', this.offerController.router);
-    this.logger.info('Controller initialization completed');
-  }
-
-  private async _initMiddleware() {
-    this.logger.info('Global middleware initialization…');
-    this.expressApplication.use(express.json());
-    this.logger.info('Global middleware initialization completed');
-  }
-
-  private async _initExceptionFilters() {
-    this.logger.info('Exception filters initialization');
-    this.expressApplication.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
-    this.logger.info('Exception filters completed');
-  }
-
 
   public async init() {
-    this.logger.info('Application initialization...');
+    this.logger.info("Application initialization…");
+    this.logger.info(`Get value from env $PORT: ${this.config.get("PORT")}`);
 
+    const uri = getMongoURI(
+      // this.config.get('DB_USER'),
+      // this.config.get('DB_PASSWORD'),
+      this.config.get("DB_HOST"),
+      this.config.get("DB_PORT"),
+      this.config.get("DB_NAME")
+    );
 
-    await this._initDb();
-    await this._initMiddleware();
-    await this._initRoutes();
-    await this._initExceptionFilters();
-    await this._initServer();
+    await this.databaseClient.connect(uri);
+
+    this.initMiddleware();
+    this.initRoutes();
+    this.initExceptionFilters();
+    this.expressApp.listen(this.config.get("PORT"));
+    this.logger.info(
+      `Server started on http://localhost:${this.config.get("PORT")}`
+    );
   }
 }

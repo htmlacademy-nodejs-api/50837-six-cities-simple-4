@@ -7,11 +7,10 @@ import { HttpMethod } from '../../types/http-method.enum.js';
 import CreateUserDto from './dto/create-user.dto.js';
 import { UserServiceInterface } from './user-service.interface.js';
 import { ConfigInterface } from '../../core/config/config.interface.js';
-import { RestSchema } from '../../core/config/rest.schema.js';
 import HttpError from '../../core/errors/http-error.js';
 import { StatusCodes } from 'http-status-codes';
 import { fillDTO } from '../../core/helpers/common.js';
-import UserRdo from './rdo/user.rdo.js';
+import UserRdo from './response/user.response.js';
 import LoginUserDto from './dto/login-user.dto.js';
 
 @injectable()
@@ -19,7 +18,7 @@ export default class UserController extends Controller {
   constructor(
     @inject(AppComponent.LoggerInterface) protected readonly logger: LoggerInterface,
     @inject(AppComponent.UserServiceInterface) private readonly userService: UserServiceInterface,
-    @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface<RestSchema>
+    @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface
   ) {
     super(logger);
     this.logger.info('Register routes for UserController…');
@@ -28,11 +27,7 @@ export default class UserController extends Controller {
     this.addRoute({ path: '/login', method: HttpMethod.Post, handler: this.login });
   }
 
-  //public create(
   public async create(
-    // _req: Request<Record<string, unknown>, Record<string, unknown>, CreateUserDto>,
-    // _res: Response,
-    // _next: NextFunction
     {body}: Request<Record<string, unknown>, Record<string, unknown>, CreateUserDto>,
     res: Response,
   ): Promise<void> {

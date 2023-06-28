@@ -47,12 +47,12 @@ export default class ImportCommand implements CliCommandInterface {
       password: DEFAULT_USER_PASSWORD
     }, this.salt);
 
-    const city = await this.cityService.findOrCreate(offer.cityId, {...offer.city});
+    const city = await this.cityService.findOrCreate(offer.city.cityName, offer.city);
 
     await this.offerService.create({
       ...offer,
       userId: user.id,
-      cityId: city?.id,
+      cityId: city.id,
     });
   }
 
