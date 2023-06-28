@@ -70,7 +70,7 @@ export default class OfferService implements OfferServiceInterface {
       .exec();
   }
 
-  public async findByCity(
+  public async findByCityId(
     offerId: string,
     count?: number
   ): Promise<DocumentType<OfferEntity>[]> {

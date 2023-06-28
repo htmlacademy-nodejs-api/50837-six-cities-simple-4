@@ -71,11 +71,11 @@ export default class OfferGenerator implements OfferGeneratorInterface {
       maxAdults,
       price,
       goods,
-      coordinates,
       name,
       email,
       avatarUrl,
-      userType
+      userType,
+      coordinates
     ].join('\t');
   }
 }

@@ -6,13 +6,12 @@ import { AppComponent } from '../../types/app-component.enum.js';
 import { HttpMethod } from '../../types/http-method.enum.js';
 import { OfferServiceInterface } from './offer-service.interface.js';
 import { fillDTO } from '../../core/helpers/common.js';
-import OfferRdo from './rdo/offer.rdo.js';
+import OfferRdo from './response/offer.response.js';
 import CreateOfferDto from './dto/create-offer.dto';
 import { StatusCodes } from 'http-status-codes';
 
 @injectable()
 export default class OfferController extends Controller {
-  // constructor(@inject(AppComponent.LoggerInterface) logger: LoggerInterface
   constructor(
     @inject(AppComponent.LoggerInterface)
     protected readonly logger: LoggerInterface,
@@ -27,18 +26,13 @@ export default class OfferController extends Controller {
     this.addRoute({ path: '/', method: HttpMethod.Post, handler: this.create });
   }
 
-  // public index(req: Request, res: Response): void {
-  //   // Код обработчика
   public async index(_req: Request, res: Response): Promise<void> {
     const offers = await this.offerService.find();
-    //this.ok(res, offers);
+
     const offersToResponse = fillDTO(OfferRdo, offers);
     this.ok(res, offersToResponse);
   }
 
-  //public create(req: Request, res: Response): void {
-  //public create(_req: Request, _res: Response): void {
-  // Код обработчика
   public async create(
     {
       body,

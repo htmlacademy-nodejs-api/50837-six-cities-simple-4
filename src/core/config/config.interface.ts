@@ -1,3 +1,5 @@
-export interface ConfigInterface<U> {
-  get<T extends keyof U>(key: T): U[T];
+import {ConfigSchema} from './rest.schema';
+
+export interface ConfigInterface {
+  get<T extends keyof ConfigSchema>(key: T): ConfigSchema[T];
 }

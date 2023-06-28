@@ -1,9 +1,7 @@
-import { City} from '../../../types/OfferType.js';
 
 export default class CreateOfferDto {
   public bedrooms!: number;
   public title!: string;
-  public city!: City;
   public description!: string;
   public images!: string[];
   public isPremium!: boolean;
