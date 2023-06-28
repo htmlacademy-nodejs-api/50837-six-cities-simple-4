@@ -10,6 +10,7 @@ export interface OfferServiceInterface {
   findOrCreate(dto: CreateOfferDto): Promise<DocumentType<OfferEntity>>;
   find(): Promise<DocumentType<OfferEntity>[]>;
   deleteById(offerId: string): Promise<DocumentType<OfferEntity> | null>;
+
   updateById(
     offerId: string,
     dto: UpdateOfferDto
@@ -18,6 +19,7 @@ export interface OfferServiceInterface {
     cityId: string,
     count?: number
   ): Promise<DocumentType<OfferEntity>[]>;
+
   incCommentCount(offerId: string): Promise<DocumentType<OfferEntity> | null>;
   findNew(count: number): Promise<DocumentType<OfferEntity>[]>;
   findDiscussed(count: number): Promise<DocumentType<OfferEntity>[]>;

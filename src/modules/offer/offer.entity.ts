@@ -13,6 +13,10 @@ export interface OfferEntity extends defaultClasses.Base {}
   }
 })
 
+
+
+//export class OfferEntity extends defaultClasses.TimeStamps implements OfferType {
+
 export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({ required: true, min:1, max: 8 })
   public bedrooms: number;
@@ -47,11 +51,13 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({ required: true })
   public goods: string[];
 
+
   // @prop({ required: true })
   // public latitude: string;
 
   // @prop({ required: true })
   // public longitude: string;
+
 
   @prop({
     ref: CityEntity,
@@ -64,6 +70,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     required: true
   })
   public userId!: Ref<UserEntity>;
+
 
   constructor(offerData: OfferType) {
     super();
@@ -82,6 +89,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     //this.latitude = offerData.latitude;
     //this.longitude = offerData.longitude;
   }
+
 }
 
 export const OfferModel = getModelForClass(OfferEntity);

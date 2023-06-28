@@ -39,11 +39,13 @@ export default class OfferResponse {
   @Expose()
   public goods!: string[];
 
+
   // @Expose()
   // public latitude: string;
 
   // @Expose()
   // public longitude: string;
+
 
   @Expose()
   @Type(() => CityResponse)

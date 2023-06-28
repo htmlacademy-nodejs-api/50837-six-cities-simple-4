@@ -16,7 +16,6 @@ const applicationContainer = new Container();
 applicationContainer.bind<RestApplication>(AppComponent.RestApplication).to(RestApplication).inSingletonScope();
 
 applicationContainer.bind<LoggerInterface>(AppComponent.LoggerInterface).to(LoggerService).inSingletonScope();
-
 applicationContainer.bind<ConfigInterface>(AppComponent.ConfigInterface).to(ConfigService).inSingletonScope();
 
 applicationContainer.bind<DatabaseClientInterface>(AppComponent.DatabaseClientInterface).to(MongoClientService).inSingletonScope();

@@ -7,6 +7,10 @@ import { HttpMethod } from '../../types/http-method.enum.js';
 import CreateUserDto from './dto/create-user.dto.js';
 import { UserServiceInterface } from './user-service.interface.js';
 import { ConfigInterface } from '../../core/config/config.interface.js';
+
+
+//import { RestSchema } from '../../core/config/rest.schema.js';
+
 import HttpError from '../../core/errors/http-error.js';
 import { StatusCodes } from 'http-status-codes';
 import { fillDTO } from '../../core/helpers/common.js';
@@ -18,6 +22,9 @@ export default class UserController extends Controller {
   constructor(
     @inject(AppComponent.LoggerInterface) protected readonly logger: LoggerInterface,
     @inject(AppComponent.UserServiceInterface) private readonly userService: UserServiceInterface,
+
+
+    //@inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface<RestSchema>
     @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface
   ) {
     super(logger);

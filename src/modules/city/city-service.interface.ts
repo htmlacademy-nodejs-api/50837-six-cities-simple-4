@@ -4,6 +4,10 @@ import {CityEntity} from './city.entity.js';
 
 export interface CityServiceInterface {
   create(dto: CreateCityDto): Promise<DocumentType<CityEntity>>;
+  findByCityId(cityId: string): Promise<DocumentType<CityEntity> | null>;
   findByCityName(cityName: string): Promise<DocumentType<CityEntity> | null>;
-  find(): Promise<DocumentType<CityEntity>[]>;
+
+
+  findByCityNameOrCreate(cityName: string, dto: CreateCityDto): Promise<DocumentType<CityEntity>>;
+
 }

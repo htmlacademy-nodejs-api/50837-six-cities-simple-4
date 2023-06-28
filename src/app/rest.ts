@@ -16,6 +16,7 @@ export default class Application {
   constructor(
     @inject(AppComponent.LoggerInterface) private logger: LoggerInterface,
     @inject(AppComponent.ConfigInterface) private config: ConfigInterface,
+
     @inject(AppComponent.DatabaseClientInterface)
     private databaseClient: DatabaseClientInterface,
     @inject(AppComponent.CityController)
@@ -42,8 +43,10 @@ export default class Application {
   public initMiddleware() {
     this.expressApp.use(express.json());
     this.expressApp.use(
+
       "/upload",
       express.static(this.config.get("UPLOAD_DIRECTORY"))
+
     );
   }
 
@@ -52,6 +55,7 @@ export default class Application {
   }
 
   public async init() {
+
     this.logger.info("Application initialization…");
     this.logger.info(`Get value from env $PORT: ${this.config.get("PORT")}`);
 
@@ -72,5 +76,6 @@ export default class Application {
     this.logger.info(
       `Server started on http://localhost:${this.config.get("PORT")}`
     );
+
   }
 }

@@ -1,3 +1,4 @@
+
 import { inject, injectable } from "inversify";
 import { Request, Response } from "express";
 import { Controller } from "../../core/controller/controller.abstract.js";
@@ -9,6 +10,7 @@ import { fillDTO } from "../../core/helpers/common.js";
 import OfferRdo from "./response/offer.response.js";
 import CreateOfferDto from "./dto/create-offer.dto.js";
 import { StatusCodes } from "http-status-codes";
+
 
 @injectable()
 export default class OfferController extends Controller {
